@@ -1,15 +1,15 @@
 <template>
   <div class="leftMenu">
     <div class="leftMenuBox">
-      <div class="leftMenuBoxItem">
+      <router-link :to="{name:'Articles'}" class="leftMenuBoxItem">
         <div class="leftMenuBoxItemTitle">Articles</div>
-      </div>
-      <div class="leftMenuBoxItem">
+      </router-link>
+      <router-link :to="{name:'Classtypes'}" class="leftMenuBoxItem">
         <div class="leftMenuBoxItemTitle">Classtypes</div>
-      </div>
-      <div class="leftMenuBoxItem">
+      </router-link>
+      <router-link :to="{name:'Members'}" class="leftMenuBoxItem">
         <div class="leftMenuBoxItemTitle">Members</div>
-      </div>
+      </router-link>
     </div>
   </div>
 </template>
