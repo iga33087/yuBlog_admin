@@ -1,6 +1,9 @@
 <template>
-  <div class="login">111</div>
+  <div id="articles">
+    2222
+  </div>
 </template>
 
-<script setup>
+<script>
+
 </script>

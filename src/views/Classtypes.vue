@@ -17,8 +17,12 @@
       <el-table-column prop="menu" label="Menu">
         <template #default="scope">
           <div class="d-flex align-items-center justify-content-end">
-            <el-button type="warning" circle @click="edit(scope.row)"><Edit /></el-button>
-            <el-button type="danger"circle @click="del(scope.row)"><Edit /></el-button>
+            <el-button type="warning" circle @click="edit(scope.row)">
+              <el-icon><Edit /></el-icon>
+            </el-button>
+            <el-button type="danger" circle @click="del(scope.row)">
+              <el-icon><Delete /></el-icon>
+            </el-button>
           </div>
         </template>
       </el-table-column>
