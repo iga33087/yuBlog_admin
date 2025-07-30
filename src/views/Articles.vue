@@ -1,9 +1,12 @@
 <template>
   <div id="articles">
-    2222
+    <VueEditor v-model="content" />
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
+import { VueEditor } from "vue3-editor";
 
+const content=ref(null)
 </script>
