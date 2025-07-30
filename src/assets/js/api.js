@@ -30,6 +30,12 @@ export default {
   check() {
     return instance.get(`/`).then(res=>res.data)
   },
+  login(x) {
+    return instance.post(`/auth/login`,x).then(res=>res.data)
+  },
+  verify() {
+    return instance.post(`/auth/verify`).then(res=>res.data)
+  },
   getArticles(x) {
     return instance.get(`/articles`,{params:x}).then(res=>res.data)
   },
@@ -53,5 +59,17 @@ export default {
   },
   delClasstypes(x) {
     return instance.delete(`/classtypes`,{params:x}).then(res=>res.data)
+  },
+  getMembers(x) {
+    return instance.get(`/members`,{params:x}).then(res=>res.data)
+  },
+  postMembers(x) {
+    return instance.post(`/members`,x).then(res=>res.data)
+  },
+  putMembers(x) {
+    return instance.put(`/members`,x).then(res=>res.data)
+  },
+  delMembers(x) {
+    return instance.delete(`/members`,{params:x}).then(res=>res.data)
   },
 }

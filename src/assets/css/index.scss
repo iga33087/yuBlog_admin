@@ -19,7 +19,8 @@ html,body {
     padding: 1rem;
   }
   .leftMenuBoxItem {
-
+    text-decoration: none;
+    color:#fff;
   }
   .leftMenuBoxItemTitle {
     font-size: 1.4rem;
@@ -29,10 +30,14 @@ html,body {
 
 .header {
   height: 40px;
-  background-color: #ddd;
-  padding: 0 1rem;
-  display: flex;
-  align-items: center;
+  background-color: #eee;
+  .headerBox {
+    height: 100%;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
 
 .content {
@@ -42,4 +47,30 @@ html,body {
 
 .contentBox {
   padding: 1rem;
+}
+
+.login {
+  position: fixed;
+  top:0;
+  left:0;
+  width: 100vw;
+  height: 100vh;
+  background-color: $color1;
+  z-index: 98;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .loginBox {
+    padding: 1rem;
+    position: relative;
+    z-index: 99;
+    background-color: #fff;
+    border-radius: 1rem;
+  }
+  .loginBoxTitle {
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+    font-weight: bold;
+    text-align: center;
+  }
 }

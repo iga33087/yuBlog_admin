@@ -1,6 +1,17 @@
 <template>
   <div class="classtypes">
-    <div class="d-flex align-items-center justify-content-between">
+    <el-dialog v-model="showDialog" :title="isAdd ? 'Add' : 'Edit'" width="500">
+      <el-form :model="formData" label-width="auto">
+        <el-form-item label="Title">
+          <el-input v-model="formData.title" />
+        </el-form-item>
+      </el-form>
+      <div class="d-flex align-items-center justify-content-end">
+        <el-button @click="showDialog=false">Close</el-button>
+        <el-button type="primary" @click="sub">Submit</el-button>
+      </div>
+    </el-dialog>
+    <div class="d-flex align-items-center justify-content-between mb-4">
       <div></div>
       <div>
         <el-button>Clear</el-button>
@@ -37,19 +48,21 @@ import global from '../assets/js/global.js'
 
 const isAdd=ref(false)
 const tableData=ref(null)
+const showDialog=ref(false)
+const formData=ref({
+  title: null,
+})
 
 async function add() {
+  clear()
   isAdd.value=true
-  let title=prompt('新增 - 請輸入Title')
-  if(!title) return 0
-  await sub({title})
+  showDialog.value=true
 }
 
 async function edit(x) {
+  formData.value=JSON.parse(JSON.stringify(x))
   isAdd.value=false
-  let title=prompt('修改 - 請輸入Title',x.title)
-  if(!title) return 0
-  await sub({_id:x['_id'],title})
+  showDialog.value=true
 }
 
 async function del(x) {
@@ -57,15 +70,24 @@ async function del(x) {
   await getInit()
 }
 
-async function sub(data) {
-  if(isAdd.value) await api.postClasstypes(data)
-  else await api.putClasstypes(data)
+async function sub() {
+  if(isAdd.value) await api.postClasstypes(formData.value)
+  else await api.putClasstypes(formData.value)
   await getInit()
+  showDialog.value=false
 }
 
 async function getInit() {
   tableData.value=await api.getClasstypes({})
 }
+
+function clear() {
+  formData.value={
+    title: null,
+  }
+}
+
+
 
 getInit()
 </script>

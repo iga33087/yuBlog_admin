@@ -6,6 +6,7 @@ export const useStore = defineStore('store', {
   state: () => ({
     loading: false,
     path: null,
+    userData:null
   }),
   getters: {
     /*cpuChart:(state) => {
