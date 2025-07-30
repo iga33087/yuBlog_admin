@@ -66,6 +66,7 @@ async function edit(x) {
 }
 
 async function del(x) {
+  if(!confirm(`Are you sure to delete ${x.title}?`)) return 0
   await api.delClasstypes({_id:x['_id']})
   await getInit()
 }

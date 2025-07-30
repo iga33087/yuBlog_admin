@@ -93,6 +93,7 @@ async function edit(x) {
 }
 
 async function del(x) {
+  if(!confirm(`Are you sure to delete ${x.name}?`)) return 0
   await api.delMembers({_id:x['_id']})
   await getInit()
 }
