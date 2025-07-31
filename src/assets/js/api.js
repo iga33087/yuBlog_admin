@@ -72,4 +72,16 @@ export default {
   delMembers(x) {
     return instance.delete(`/members`,{params:x}).then(res=>res.data)
   },
+  getComments(x) {
+    return instance.get(`/comments`,{params:x}).then(res=>res.data)
+  },
+  postComments(x) {
+    return instance.post(`/comments`,x).then(res=>res.data)
+  },
+  putComments(x) {
+    return instance.put(`/comments`,x).then(res=>res.data)
+  },
+  delComments(x) {
+    return instance.delete(`/comments`,{params:x}).then(res=>res.data)
+  },
 }

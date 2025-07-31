@@ -1,27 +1,9 @@
 <template>
-  <div class="members">
+  <div class="commentBox">
     <el-dialog v-model="showDialog" :title="isAdd ? 'Add' : 'Edit'" width="500">
       <el-form :model="formData" label-width="auto">
-        <el-form-item label="Name">
-          <el-input v-model="formData.name" />
-        </el-form-item>
-        <el-form-item label="Account">
-          <el-input v-model="formData.account" />
-        </el-form-item>
-        <el-form-item label="Password">
-          <el-input v-model="formData.password" show-password />
-        </el-form-item>
-        <el-form-item label="IsAdmin">
-          <el-radio-group v-model="formData.isAdmin">
-            <el-radio :value="true">Yes</el-radio>
-            <el-radio :value="false">No</el-radio>
-          </el-radio-group>
-        </el-form-item>
-        <el-form-item label="Intro">
-          <el-input v-model="formData.intro" />
-        </el-form-item>
-        <el-form-item label="Link">
-          <el-input v-model="formData.link" />
+        <el-form-item label="content">
+          <el-input v-model="formData.content" />
         </el-form-item>
       </el-form>
       <div class="d-flex align-items-center justify-content-end">
@@ -37,11 +19,12 @@
       </div>
     </div>
     <el-table :data="tableData.data" style="width: 100%" v-if="tableData">
-      <el-table-column prop="name" label="Name" />
-      <el-table-column prop="isAdmin" label="IsAdmin" />
-      <el-table-column prop="account" label="Account" />
-      <el-table-column prop="intro" label="Intro" />
-      <el-table-column prop="link" label="Link" />
+      <el-table-column prop="member_id" label="Member">
+        <template #default="scope">
+          <div>{{membersObj[scope.row.member_id]?.name}}</div>
+        </template>
+      </el-table-column>
+      <el-table-column prop="content" label="content" />
       <el-table-column prop="date" label="Date">
         <template #default="scope">
           <div>{{global.timeFormat(scope.row.date,'YYYY/MM/DD HH:mm')}}</div>
@@ -64,20 +47,17 @@
 </template>
 
 <script setup>
-import {ref,reactive} from 'vue'
+import {ref,reactive,computed} from 'vue'
 import api from '../assets/js/api.js'
 import global from '../assets/js/global.js'
 
+const props=defineProps(['articleID','membersObj'])
 const isAdd=ref(false)
 const tableData=ref(null)
 const showDialog=ref(false)
 const formData=ref({
-  name: null,
-  account: null,
-  password: null,
-  isAdmin: false,
-  intro: null,
-  link: null,
+  article_id:props.articleID,
+  content:null
 })
 
 async function add() {
@@ -93,30 +73,26 @@ async function edit(x) {
 }
 
 async function del(x) {
-  if(!confirm(`Are you sure to delete ${x.name}?`)) return 0
-  await api.delMembers({_id:x['_id']})
+  if(!confirm(`Are you sure to delete?`)) return 0
+  await api.delComments({_id:x['_id']})
   await getInit()
 }
 
 async function sub() {
-  if(isAdd.value) await api.postMembers(formData.value)
-  else await api.putMembers(formData.value)
+  if(isAdd.value) await api.postComments(formData.value)
+  else await api.putComments(formData.value)
   await getInit()
   showDialog.value=false
 }
 
 async function getInit() {
-  tableData.value=await api.getMembers({})
+  tableData.value=await api.getComments({article_id:props.articleID,sort:"-date"})
 }
 
 function clear() {
   formData.value={
-    name: null,
-    account: null,
-    password: null,
-    isAdmin: false,
-    intro: null,
-    link: null,
+    article_id:props.articleID,
+    content:null
   }
 }
 
