@@ -8,6 +8,11 @@
             <el-option v-for="item in classtypesData.data" :key="item._id" :label="item.title" :value="item._id" />
           </el-select>
         </el-form-item>
+        <el-form-item label="Tag">
+          <el-select v-model="formData.tag_id" style="width: 240px" multiple>
+            <el-option v-for="item in tagsData.data" :key="item._id" :label="item.title" :value="item._id" />
+          </el-select>
+        </el-form-item>
         <el-form-item label="Title">
           <el-input v-model="formData.title" />
         </el-form-item>
@@ -78,6 +83,7 @@ import CommentBox from "../components/CommentBox.vue";
 const isAdd=ref(false)
 const tableData=ref(null)
 const classtypesData=ref(null)
+const tagsData=ref(null)
 const membersData=ref(null)
 const showDialog=ref(false)
 const showCommentDialog=ref(false)
@@ -134,6 +140,7 @@ async function sub() {
 async function getInit() {
   tableData.value=await api.getArticles({})
   classtypesData.value=await api.getClasstypes({})
+  tagsData.value=await api.getTags({})
   membersData.value=await api.getMembers({})
 }
 
@@ -145,6 +152,7 @@ async function showComment(x) {
 function clear() {
   formData.value={
     classtype_id: null,
+    tag_id: [],
     title: null,
     content: null,
   }

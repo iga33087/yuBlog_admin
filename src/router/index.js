@@ -41,6 +41,16 @@ const routes = [
     component: () => import('../views/Classtypes.vue')
   },
   {
+    path: '/tags',
+    name: 'Tags',
+    meta: {
+      title:'Tags',
+      icon:'',
+      //show:true
+    },
+    component: () => import('../views/Tags.vue')
+  },
+  {
     path: '/members',
     name: 'Members',
     meta: {

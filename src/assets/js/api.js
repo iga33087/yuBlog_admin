@@ -57,8 +57,17 @@ export default {
   putClasstypes(x) {
     return instance.put(`/classtypes`,x).then(res=>res.data)
   },
-  delClasstypes(x) {
-    return instance.delete(`/classtypes`,{params:x}).then(res=>res.data)
+  getTags(x) {
+    return instance.get(`/tags`,{params:x}).then(res=>res.data)
+  },
+  postTags(x) {
+    return instance.post(`/tags`,x).then(res=>res.data)
+  },
+  putTags(x) {
+    return instance.put(`/tags`,x).then(res=>res.data)
+  },
+  delTags(x) {
+    return instance.delete(`/tags`,{params:x}).then(res=>res.data)
   },
   getMembers(x) {
     return instance.get(`/members`,{params:x}).then(res=>res.data)
