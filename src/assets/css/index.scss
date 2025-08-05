@@ -74,3 +74,12 @@ html,body {
     text-align: center;
   }
 }
+
+.uploadImg {
+  width: 100%;
+  .uploadImgBox {
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid #eee;
+  }
+}

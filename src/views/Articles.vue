@@ -1,12 +1,15 @@
 <template>
   <div class="articles">
-
     <el-dialog v-model="showDialog" :title="isAdd ? 'Add' : 'Edit'" width="1000">
       <el-form :model="formData" label-width="auto">
         <el-form-item label="Classtype">
           <el-select v-model="formData.classtype_id" style="width: 240px">
             <el-option v-for="item in classtypesData.data" :key="item._id" :label="item.title" :value="item._id" />
           </el-select>
+        </el-form-item>
+        <el-form-item label="Image">
+          <UploadImg @getImgUrl="getImgUrl" />
+          <img :src="formData.img" />
         </el-form-item>
         <el-form-item label="Tag">
           <el-select v-model="formData.tag_id" style="width: 240px" multiple>
@@ -79,6 +82,7 @@ import api from '../assets/js/api.js'
 import global from '../assets/js/global.js'
 import { VueEditor } from "vue3-editor";
 import CommentBox from "../components/CommentBox.vue";
+import UploadImg from "../components/UploadImg.vue";
 
 const isAdd=ref(false)
 const tableData=ref(null)
@@ -90,6 +94,7 @@ const showCommentDialog=ref(false)
 const articleID=ref(null)
 const formData=ref({
   classtype_id: null,
+  img: null,
   title: null,
   content: null,
 })
@@ -156,6 +161,11 @@ function clear() {
     title: null,
     content: null,
   }
+}
+
+function getImgUrl(x) {
+  formData.value.img=x
+  console.log('getImgUrl',x)
 }
 
 getInit()
