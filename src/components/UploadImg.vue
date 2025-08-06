@@ -3,7 +3,7 @@
     <el-button class="mb-2" type="primary" @click="fileUpload.click()">Upload</el-button>
     <input type="file" ref="fileUpload" @change="upload" v-show="false">
     <div class="uploadImgBox" v-if="objectURL">
-      <cropper ref="cropperBox" class="cropper mb-2" :src="objectURL" :stencil-props="{ aspectRatio: 10/12 }" @change="changeCrop"></cropper>
+      <cropper ref="cropperBox" class="cropper mb-2" :src="objectURL" :stencil-props="{ aspectRatio: 3/2 }" @change="changeCrop"></cropper>
       <div class="d-flex align-items-center justify-content-end">
         <el-button @click="clear">Clear</el-button>
         <el-button type="primary" @click="emitImg">OK</el-button>

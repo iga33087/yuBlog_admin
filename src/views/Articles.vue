@@ -9,7 +9,7 @@
         </el-form-item>
         <el-form-item label="Image">
           <UploadImg @getImgUrl="getImgUrl" />
-          <img :src="formData.img" />
+          <img class="articlesFormImg" :src="formData.coverImg" v-if="formData.coverImg" />
         </el-form-item>
         <el-form-item label="Tag">
           <el-select v-model="formData.tag_id" style="width: 240px" multiple>
@@ -94,7 +94,7 @@ const showCommentDialog=ref(false)
 const articleID=ref(null)
 const formData=ref({
   classtype_id: null,
-  img: null,
+  coverImg: null,
   title: null,
   content: null,
 })
@@ -164,8 +164,7 @@ function clear() {
 }
 
 function getImgUrl(x) {
-  formData.value.img=x
-  console.log('getImgUrl',x)
+  formData.value.coverImg=x
 }
 
 getInit()
