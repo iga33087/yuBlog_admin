@@ -13,6 +13,9 @@
       <router-link :to="{name:'Members'}" class="leftMenuBoxItem">
         <div class="leftMenuBoxItemTitle">Members</div>
       </router-link>
+      <router-link :to="{name:'System'}" class="leftMenuBoxItem">
+        <div class="leftMenuBoxItemTitle">System</div>
+      </router-link>
     </div>
   </div>
 </template>

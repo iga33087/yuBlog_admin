@@ -60,6 +60,16 @@ const routes = [
     },
     component: () => import('../views/Members.vue')
   },
+  {
+    path: '/system',
+    name: 'System',
+    meta: {
+      title:'System',
+      icon:'',
+      //show:true
+    },
+    component: () => import('../views/System.vue')
+  },
 ]
 
 const router = createRouter({

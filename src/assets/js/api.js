@@ -93,4 +93,10 @@ export default {
   delComments(x) {
     return instance.delete(`/comments`,{params:x}).then(res=>res.data)
   },
+  getAppInfo() {
+    return instance.get(`/appInfo`).then(res=>res.data)
+  },
+  putAppInfo(x) {
+    return instance.put(`/appInfo`,x).then(res=>res.data)
+  },
 }
