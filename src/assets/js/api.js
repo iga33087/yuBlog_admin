@@ -69,6 +69,12 @@ export default {
   delTags(x) {
     return instance.delete(`/tags`,{params:x}).then(res=>res.data)
   },
+  getMembersNone() {
+    return instance.get(`/members/noUser`).then(res=>res.data)
+  },
+  postMembersCreateFirstAdmin(x) {
+    return instance.post(`/members/createFirstAdmin`,x).then(res=>res.data)
+  },
   getMembers(x) {
     return instance.get(`/members`,{params:x}).then(res=>res.data)
   },
