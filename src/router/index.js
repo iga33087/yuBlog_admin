@@ -2,16 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    meta: {
-      title:'Dashboard',
-      icon:'',
-      //show:true
-    },
-    component: () => import('../views/Home.vue')
-  },
-  {
     path: '/login',
     name: 'Login',
     meta: {
@@ -69,6 +59,10 @@ const routes = [
       //show:true
     },
     component: () => import('../views/System.vue')
+  },
+  {
+    path: '/',
+    redirect: { name: 'Articles' }
   },
 ]
 
