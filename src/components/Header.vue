@@ -1,9 +1,9 @@
 <template>
   <div class="header">
     <div class="headerBox">
-      <div class="headerBoxPath" v-if="store.path">{{store.path}}</div>
+      <div class="headerBoxPath" v-if="store?.path">{{store?.path}}</div>
       <el-dropdown trigger="click">
-        <div class="headerBoxUser" v-if="store.userData">{{store?.userData?.data?.name}}</div>
+        <div class="headerBoxUser">{{store?.userData?.data?.name}}</div>
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item @click="logout">Logout</el-dropdown-item>
